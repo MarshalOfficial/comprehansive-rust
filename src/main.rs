@@ -12,6 +12,10 @@ fn main() {
     let p2 = p1;
     println!("p1: {p1:?}");
     println!("p2: {p2:?}");
+    
+    // After the assignment, both p1 and p2 own their own data.
+    // We can also use p1.clone() to explicitly copy the data.
+
 }
 
 //You can opt-in your own types to use copy semantics:
