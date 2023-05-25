@@ -1,16 +1,20 @@
-fn takes_u32(x: u32) {
-    println!("u32: {x}");
-}
-
-fn takes_i8(y: i8) {
-    println!("i8: {y}");
-}
-
 fn main() {
-    let x = 10;
-    let y = 20;
+    let a = 10;
+    println!("before: {a}");
 
-    takes_u32(x);
-    takes_i8(y);
-    // takes_u32(y);
+    {
+        let a = "hello";
+        println!("inner scope: {a}");
+
+        let a = true;
+        println!("shadowed in inner scope: {a}");
+    }
+
+    println!("after: {a}");
+
+
+    let z = 1;
+    let g = &z;
+    let z = z + 1;
+    println!("{z} {g}");
 }
