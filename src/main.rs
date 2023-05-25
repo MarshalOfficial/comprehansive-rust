@@ -1,14 +1,19 @@
-fn say_hello(name: String) {
-    println!("Hello {name}")
-}
-
+//While move semantics are the default, certain types are copied by default:
+//These types implement the Copy trait.
 fn main() {
-    let name = String::from("Alice");
-    say_hello(name);
-    // say_hello(name);
+    let x = 42;
+    let y = x;
+    println!("x: {x}");
+    println!("y: {y}");
+
+
+    //it depends on Point type
+    let p1 = Point(3, 4);
+    let p2 = p1;
+    println!("p1: {p1:?}");
+    println!("p2: {p2:?}");
 }
 
-// With the first call to say_hello, main gives up ownership of name. Afterwards, name cannot be used anymore within main.
-// The heap memory allocated for name will be freed at the end of the say_hello function.
-// main can retain ownership if it passes name as a reference (&name) and if say_hello accepts a reference as a parameter.
-// Alternatively, main can pass a clone of name in the first call (name.clone()).
+//You can opt-in your own types to use copy semantics:
+#[derive(Copy, Clone, Debug)]
+struct Point(i32, i32);
