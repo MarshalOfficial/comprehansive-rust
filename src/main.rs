@@ -1,20 +1,30 @@
+#[derive(Debug)]
+struct Point(i32, i32);
 
-
-// You can have one or more &T values at any given time, or
-// You can have exactly one &mut T value.
-
+fn left_most<'a>(p1: &'a Point, p2: &'a Point) -> &'a Point {
+    if p1.0 < p2.0 { p1 } else { p2 }
+}
 
 fn main() {
-    let mut a: i32 = 10;
-    let b: &i32 = &a;
-    
-    println!("b: {b}");
-
-    {
-        let c: &mut i32 = &mut a;
-        *c = 20;
-    }
-
-    println!("a: {a}");
-    //println!("b: {b}");
+    let p1: Point = Point(10, 10);
+    let p2: Point = Point(20, 20);
+    let p3: &Point = left_most(&p1, &p2);
+    println!("left-most point: {:?}", p3);
 }
+
+// #[derive(Debug)]
+// struct Point(i32, i32);
+
+// fn left_most<'a, 'b>(p1: &'a Point, p2: &'a Point) -> &'b Point {
+//     if p1.0 < p2.0 { p1 } else { p2 }
+// }
+
+// fn main() {
+//     let p1: Point = Point(10, 10);
+//     let p3: &Point;
+//     {
+//         let p2: Point = Point(20, 20);
+//         p3 = left_most(&p1, &p2);
+//     }
+//     println!("left-most point: {:?}", p3);
+// }
